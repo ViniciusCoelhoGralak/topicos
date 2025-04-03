@@ -11,7 +11,10 @@ POST http://localhost:5191/api/carros
 Content-Type: application/json
 
 {
-    "name": "Fusca 1956"
+    "name": "Fusca 1956",
+    "modelo": {
+        "id": 1
+    }
 }
 
 ### Atualiza os dados do Carro
