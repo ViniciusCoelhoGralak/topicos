@@ -2,10 +2,38 @@ using API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+using Microsoft.OpenApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDataContext>();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options => 
+    {
+
+        // options.EnableAnnotations();
+        options.SwaggerDoc("v1" , new OpenApiInfo
+        {
+            Title = "Swagger Documentação Web API Carros",
+            Description = "Endponts para gerenciar de cadastro de carros",
+            Contact = new OpenApiContact() {
+                Name = "Raphael Costa",
+                Email = "raphaelcosta@outlook.com"
+            },
+            License = new OpenApiLicense() {
+                Name = "MIT License",
+                Url = new Uri("https://opensource.org/licenses/MIT")
+            }
+        });
+
+    }
+
+);
+
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // Endpoints relacionados ao recurso de Carros
 //GET: Lista todos os carros cadastrados
